@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Hello Coursera</title>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+    </style>
   </head>
-  <body>
-    <h1>Hello Coursera students!</h1>
-  </body>
+<body ng-app="CheckIfTooMuch">
+   <div class="container" ng-controller="CheckCtrllr">
+     <h1>Lunch Checker</h1>
+
+         <div class="form-group">
+             <input id="lunch-menu" type="text"
+             placeholder="list comma separated dishes you usually have for lunch"
+             class="form-control"
+             ng-model="dishes"
+             style="border-color:{{textBorderColor}}">
+         </div>
+         <div class="form-group">
+             <button class="btn btn-default" ng-click="CheckIt()">Check If Too Much</button>
+         </div>
+         <div class="form-group message">
+           <p style="color:{{messageColor}}">{{message}}</p>
+         </div>
+         <div>
+           <p><strong>General Idea</strong></p>
+           <p>The idea of this assignment is to create a front-end application
+             that presents the user with a textbox where they can list comma-separated
+              items they usually eat for lunch. Once that's entered,
+              the user has to click the "Check If Too Much" button.</p>
+           <p>If the number of items in the textbox is less than or equal to 3 (e.g., 1, 2, or 3),
+             a message should show up under to the textbox saying "Enjoy!".
+             If the number of items is greater than 3 (4, 5, and above),
+             the message "Too much!" should show up under the textbox.
+              (Hint: To implement this behavior you can utilize the split method.) </p>
+           <p>If the textbox is empty and the user clicks the "Check If Too Much" button,
+             the message "Please enter data first" should show up.
+             'Empty' here means either "" (empty string) or a string with just spaces in it.
+              (Hint: AngularJS ng-model already performs the trimming for you,
+              so there shouldn't be anything you need to do.)</p>
+           <p>Only 1 message should be shown at any given time.
+             In other words, if you have both messages "Enjoy!" and "Too much!"
+              showing up at the same time, it's an error.</p>
+           <p>You are not required to handle a case where there is no item between some commas.
+             For example, you are free to consider this case item 1, item2,,item3
+             or this case item 1, item2, ,item3 as 4 items in the list.
+             However, you can implement checking for an 'empty' item as a bonus feature (ungraded).
+             Please make sure to put a comment somewhere next to the input textbox stating that
+             you do NOT consider and empty item, i.e., , , as an item towards to the count.</p>
+           <h2>Module 1 Coding Assignment</h2>
+           <h3>Single Page Web Applications with AngularJS</h3>
+           <h4>Johns Hopkins University</h4>
+           <h4>Part of a 6-course series, the Ruby on Rails Web Development Coursera Specialization</h4>
+
+         </div>
+   </div>
+
+   <script src="js/angular.min.js"></script>
+   <script src="js/app.js"></script>
+</body>
 </html>
