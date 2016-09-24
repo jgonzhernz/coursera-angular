@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" ng-app="ShoppingList">
+
+<head>
+    <title>Shopping List Check Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+        .emptyMessage {
+            font-weight: bold;
+            color: red;
+            font-size: 1.2em;
+        }
+
+        li {
+            margin-bottom: 7px;
+            font-size: 1.2em;
+        }
+
+        li > button {
+            margin-left: 6px;
+        }
+
+        button > span {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Shopping List Check Off</h1>
+
+        <div class="row">
+
+            <!-- To Buy List -->
+            <div class="col-md-6" ng-controller="ToBuyShoppingController as toBuyCtrl">
+                <h2>To Buy:</h2>
+                <ul ng-repeat="item in toBuyCtrl.itemsList">
+                    <li>Buy {{ item.quantity }} {{ item.name }}
+                      <button class="btn btn-default" ng-click="toBuyCtrl.markItem($index)">
+                        <span class="glyphicon glyphicon-ok"></span> Bought</button>
+                    </li>
+                </ul>
+                <div class="emptyMessage" ng-if="toBuyCtrl.itemsList.length === 0">Everything is bought!</div>
+            </div>
+
+            <!-- Already Bought List -->
+            <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as alreadyBoughtCtrl">
+                <h2>Already Bought:</h2>
+                <ul ng-repeat="item in alreadyBoughtCtrl.boughtItems">
+                    <li>Bought {{ item.quantity }} {{ item.name }}</li>
+                </ul>
+                <div class="emptyMessage" ng-if="alreadyBoughtCtrl.boughtItems.length === 0">Nothing bought yet.</div>
+            </div>
+        </div>
+        <div>
+          <p><strong>General Idea</strong></p>
+          <p>The idea of this assignment is to create a "check off" shopping List application.</p>
+          <p>Think of being in a store with a shopping list that allows you to "check off" the items you've already bought,
+            except instead of checking them off, the bought item simply moves to the "Already Bought" list.</p>
+          <p>Your HTML page should display 2 lists, one titled "To Buy" and the other "Already Bought".</p>
+          <p>The "To Buy" list should be pre-populated with a list of at least 5 items.
+            (Hint: Use an array of object literals, where each item will be similar to { name: "cookies", quantity: 10 })
+            Each shopping list item is to have a name and quantity.
+            It should be displayed to the user in the format of Buy item_quantity item_name.
+            For example, shopping list item { name: "cookies", quantity: 10 } would be listed as Buy 10 cookies.</p>
+          <p>Next to each item in the list should be a button with the label "Bought".
+             When the user clicks on the "Bought" button,
+             its associated item should be removed from the "To Buy" list and appear in the "Already Bought" list.</p>
+          <p>The "Already Bought" list should initially be empty and display a message "Nothing bought yet".
+            Make sure the message appears only when the list is empty.
+            Once something is "bought" and appears on this list,
+            the format of each item in the list should be Bought item_quantity item_name.
+            For example, the bought item of 10 cookies mentioned before would appear in this list as Bought 10 cookies.</p>
+            <p>Once the user "buys" every item on the "To Buy" list,
+              i.e., clicks on the "Bought" button for every item in the "To Buy" list,
+              instead of the empty "To Buy" list, display the message "Everything is bought!"</p>
+          <h2>Module 2 Coding Assignment</h2>
+          <h3>Single Page Web Applications with AngularJS</h3>
+          <h4>Johns Hopkins University</h4>
+          <h4>Part of a 6-course series, the Ruby on Rails Web Development Coursera Specialization</h4>
+        </div>
+    </div>
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script></body>
+
+</html>
